@@ -72,7 +72,7 @@ pub fn button_system(
         let mut text = text_query.get_mut(children[0]).unwrap();
         match *interaction {
             Interaction::Pressed => {
-                if !status.0.contains("win") && text.0 == "_" {
+                if button_validation(&status.0, &text.0) {
                     if turn.0 % 2 == 0 {
                         text.0 = "X".to_string();
                         status.0 = "O's turn".to_string();
@@ -84,7 +84,7 @@ pub fn button_system(
                 }
             }
             Interaction::Hovered => {
-                if !status.0.contains("win") && text.0 == "_" {
+                if button_validation(&status.0, &text.0) {
                     border_color.0 = WHITE.into();
                 } else {
                     border_color.0 = RED.into();
@@ -93,6 +93,10 @@ pub fn button_system(
             Interaction::None => *border_color = BLACK.into(),
         }
     }
+}
+
+fn button_validation(status: &String, text: &String) -> bool {
+    !status.contains("win") && text == "_"
 }
 
 pub fn status_system(status: Res<Status>, mut text_query: Query<&mut Text, With<StatusUI>>) {
