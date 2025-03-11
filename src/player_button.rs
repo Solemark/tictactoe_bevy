@@ -1,14 +1,4 @@
-use bevy::{
-    color::Color,
-    ecs::bundle::Bundle,
-    hierarchy::{BuildChildren, ChildBuild, ChildBuilder},
-    text::{TextColor, TextFont},
-    ui::{
-        widget::{Button, Text},
-        AlignItems, BackgroundColor, BorderColor, BorderRadius, JustifyContent, Node, UiRect, Val,
-    },
-    utils::default,
-};
+use bevy::prelude::*;
 
 #[derive(Bundle)]
 struct PlayerButton {

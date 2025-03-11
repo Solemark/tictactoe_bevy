@@ -1,4 +1,4 @@
-use bevy::ecs::{component::Component, system::Resource};
+use bevy::prelude::*;
 
 #[derive(Resource)]
 pub struct TurnCounter(pub u8);

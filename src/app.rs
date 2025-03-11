@@ -3,38 +3,11 @@ use crate::{
     world::{Status, StatusUI, TurnCounter},
 };
 use bevy::{
-    app::{App, Startup, Update},
-    color::{
-        palettes::css::{BLACK, RED, WHITE},
-        Color,
-    },
-    core_pipeline::core_2d::Camera2d,
-    ecs::{
-        entity::Entity,
-        query::{Changed, With},
-        system::{Commands, Query, Res, ResMut},
-    },
-    hierarchy::{BuildChildren, Children},
-    text::{TextColor, TextFont},
-    ui::{
-        widget::{Button, Text},
-        AlignItems, BorderColor, FlexDirection, Interaction, JustifyContent, Node, Val,
-    },
-    utils::default,
-    winit::WinitSettings,
-    DefaultPlugins,
+    color::palettes::css::{BLACK, RED, WHITE},
+    prelude::*,
 };
 
-pub fn start() {
-    App::new()
-        .add_plugins(DefaultPlugins)
-        .insert_resource(WinitSettings::desktop_app())
-        .add_systems(Startup, setup)
-        .add_systems(Update, (button_system, status_system, win_system))
-        .run();
-}
-
-fn setup(mut commands: Commands) {
+pub fn setup(mut commands: Commands) {
     commands.spawn(Camera2d);
     commands.init_resource::<TurnCounter>();
     commands.init_resource::<Status>();
